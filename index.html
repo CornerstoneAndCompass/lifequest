@@ -142,9 +142,11 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg-deep);color:var(
 /* Spectral glow input */
 .task-input-wrap{position:relative;margin-bottom:28px;border-radius:var(--radius-lg);padding:2px;background:linear-gradient(90deg,#ff6b35,#ff2d78,#7c5cff,#4ecdc4,#34d399,#ffd700,#ff6b35);background-size:300% 100%;animation:spectrumShift 4s linear infinite}
 @keyframes spectrumShift{0%{background-position:0% 50%}100%{background-position:300% 50%}}
-.task-input-inner{background:var(--bg-card);border-radius:calc(var(--radius-lg) - 2px);padding:20px 24px;display:flex;gap:12px;align-items:center}
+.task-input-inner-wrap{background:var(--bg-card);border-radius:calc(var(--radius-lg) - 2px);overflow:hidden}
+.task-input-inner{padding:20px 24px;display:flex;gap:12px;align-items:center}
 .task-input-inner input{flex:1;background:transparent;border:none;color:var(--text-primary);font-family:inherit;font-size:15px;outline:none;font-weight:500}
-.task-input-inner input::placeholder{color:var(--text-muted)}
+.task-input-inner input::placeholder{color:#ffffff}
+[data-theme="light"] .task-input-inner input::placeholder{color:var(--text-muted)}
 .task-input-inner select{background:var(--bg-elevated);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text-primary);font-family:inherit;font-size:13px;outline:none;cursor:pointer;appearance:none}
 .task-add-btn{width:42px;height:42px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent-flame),var(--accent-pulse));color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0}
 .task-add-btn:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(255,107,53,.35)}
@@ -187,7 +189,7 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg-deep);color:var(
 .t-date{font-size:10px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
 
 /* Task input expanded */
-.task-input-row2{display:flex;gap:14px;align-items:flex-end;padding:20px 24px 14px;flex-wrap:wrap}
+.task-input-row2{display:flex;gap:14px;align-items:flex-end;padding:18px 24px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
 .task-input-row2 select,.task-input-row2 input[type="date"]{background:var(--bg-elevated);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text-primary);font-family:inherit;font-size:13px;outline:none;cursor:pointer;min-width:120px}
 .task-input-row2 input[type="date"]{font-family:'JetBrains Mono',monospace;color-scheme:dark;min-width:140px}
 [data-theme="light"] .task-input-row2 input[type="date"]{color-scheme:light}
@@ -652,14 +654,16 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg-deep);color:var(
   <div class="sec-header"><h3>My Personal Tasks</h3></div>
   <p class="sub-desc">Your daily habits and one-off goals. Set the frequency, pick a start date, and build streaks.</p>
   <div class="task-input-wrap">
-    <div class="task-input-row2" id="taskInputRow2">
-      <label>Category<select id="taskCat"><option value="fitness">Fitness</option><option value="health">Health</option><option value="diet">Diet</option><option value="mindfulness">Mindfulness</option><option value="learning">Learning</option><option value="finance">Finance</option><option value="organisation">Organisation</option><option value="custom">Custom</option></select></label>
-      <label>Frequency<select id="taskFreq"><option value="daily">Every day</option><option value="weekdays">Weekdays</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="once">One-off</option></select></label>
-      <label>Start date<input type="date" id="taskStart" value="2026-03-13" /></label>
-    </div>
-    <div class="task-input-inner">
-      <input id="taskInput" placeholder="What habit or task are you adding?" />
-      <button class="task-add-btn" onclick="addTask()">+</button>
+    <div class="task-input-inner-wrap">
+      <div class="task-input-row2" id="taskInputRow2">
+        <label>Category<select id="taskCat"><option value="fitness">Fitness</option><option value="health">Health</option><option value="diet">Diet</option><option value="mindfulness">Mindfulness</option><option value="learning">Learning</option><option value="finance">Finance</option><option value="organisation">Organisation</option><option value="custom">Custom</option></select></label>
+        <label>Frequency<select id="taskFreq"><option value="daily">Every day</option><option value="weekdays">Weekdays</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="once">One-off</option></select></label>
+        <label>Start date<input type="date" id="taskStart" value="2026-03-13" /></label>
+      </div>
+      <div class="task-input-inner">
+        <input id="taskInput" placeholder="What habit or task are you adding?" />
+        <button class="task-add-btn" onclick="addTask()">+</button>
+      </div>
     </div>
   </div>
   <div class="mt-tabs" id="myTabs"></div>
